@@ -94,3 +94,55 @@
     
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+document.addEventListener("DOMContentLoaded",()=> {
+
+    const form = document.getElementById("customerform");
+
+    const customerTable = document.querySelector("#customerTable tbody");
+
+    form.addEventListener("submit",function (e) {
+
+        e.preventDefault();
+
+        const name = document.getElementById("name").value;
+        const email = document.getElementById("email").value;
+        const contact = document.getElementById("contact").value;
+        const accounttype = document.getElementById("accounttype").value;
+
+
+        const newrow = document.createElement("tr");
+
+        newrow.innerHTML = `
+        <td>${name}</td>
+        <td>${email}</td>
+        <td>${contact}</td>
+        <td>${accounttype}</td> `;
+
+
+        customerTable.appendChild(newrow);
+        form.reset();
+
+
+    });
+
+    
+
+});

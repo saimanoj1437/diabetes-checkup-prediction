@@ -1,104 +1,96 @@
-import streamlit as st
-import pandas as pd
-import numpy as np
-import pickle
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
 
-# Page configuration
-st.set_page_config(page_title="Diabetes Prediction Checkup", page_icon="🩺", layout="centered")
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
 
-# Add a header and description
-st.markdown(
-    """
-    <style>
-    .title {
-        font-size: 2.5em;
-        font-weight: bold;
-        text-align: center;
-        color: #4CAF50;
-        margin-bottom: 20px;
-    }
-    .description {
-        font-size: 1.2em;
-        text-align: justify;
-        margin-bottom: 30px;
-    }
-    .footer {
-        font-size: 1em;
-        text-align: center;
-        margin-top: 50px;
-        color: #666;
-    }
-    .result {
-        font-size: 1.5em;
-        font-weight: bold;
-        text-align: center;
-        margin-top: 20px;
-    }
-    </style>
-    """,
-    unsafe_allow_html=True,
-)
-
-st.markdown('<div class="title">Diabetes Prediction Checkup</div>', unsafe_allow_html=True)
-st.markdown(
-    """
-    <div class="description">
-    This tool predicts whether or not someone may have diabetes using a Support Vector Classifier (SVC).
-    The model was trained with an accuracy of 80%. 
-    <br><br>
-    <b>Disclaimer:</b> This is not a substitute for medical advice. Please consult a healthcare professional for concerns regarding your health.
-    </div>
-    """,
-    unsafe_allow_html=True,
-)
-
-# Load the model
-model = pickle.load(open('model.pkl', 'rb'))
-
-# User input form
-def user_report():
-    st.sidebar.header("Enter Your Details:")
-    age = st.sidebar.number_input('Age', 21, 88, 35)
-    pregnancies = st.sidebar.slider('Pregnancies', 0, 17, 0)
-    glucose = st.sidebar.number_input('Glucose', 0, 200, 180)
-    bp = st.sidebar.slider('Blood Pressure', 0, 122, 90)
-    skinthickness = st.sidebar.number_input('Skin Thickness', 0, 100, 26)
-    insulin = st.sidebar.slider('Insulin', 0, 846, 90)
-    bmi = st.sidebar.number_input('BMI', 0, 67, 37)
-    dpf = st.sidebar.slider('Diabetes Pedigree Function', 0.0, 2.4, 0.314)
     
-    # Combine inputs into a dataframe
-    user_report_data = {
-        'Pregnancies': pregnancies,
-        'Glucose': glucose,
-        'BloodPressure': bp,
-        'SkinThickness': skinthickness,
-        'Insulin': insulin,
-        'BMI': bmi,
-        'DiabetesPedigreeFunction': dpf,
-        'Age': age
-    }
-    report_data = pd.DataFrame(user_report_data, index=[0])
-    return report_data
 
-# Get input data
-input_df = user_report()
-
-# Load dataset for input preprocessing
-dataset = pd.read_csv('diabetes.csv')
-dataset = dataset.drop(columns=['Outcome'])
-df = pd.concat([input_df, dataset], axis=0)
-df = df[:1]  # Use only the first row
-
-# Predict and display results
-if st.button('Predict 🚀'):
-    prediction = model.predict(df)
-    if prediction[0] == 1:
-        st.markdown('<div class="result" style="color: red;">You may have diabetes.</div>', unsafe_allow_html=True)
-        st.write("⚠️ It's important to consult a healthcare professional for a comprehensive evaluation and guidance on managing your health.")
-    else:
-        st.markdown('<div class="result" style="color: green;">You may not have diabetes.</div>', unsafe_allow_html=True)
-        st.write("✅ Maintaining a healthy lifestyle is key to preventing diabetes. Continue to prioritize a balanced diet and regular exercise.")
     
-    # Footer
-    st.markdown('<div class="footer">A PROJECT BY - M. MANOJ BHASKAR</div>', unsafe_allow_html=True)
+</head>
+<body>
+   
+    <div class="container p-4">
+        <div> 
+            <form id="customerform">
+
+                <div class="row mb-3">
+
+                    <label for="name" class="col-sm-3 col-form-label">Full Name</label>
+
+                    <div class="col-sm-9">
+
+                      <input type="text" class="form-control" id="name" placeholder="Enter Name" required>
+                    </div>
+
+                  </div>
+                  <div class="row mb-3">
+                    <label for="email" class="col-sm-3 col-form-label">Email</label>
+                    
+                    <div class="col-sm-9">
+                      <input type="email" class="form-control" id="email" placeholder="Enter mail" required>
+                    </div>
+                  </div>
+            
+                  
+                  <div class="row mb-3">
+                    <label for="contact" class="col-sm-3 col-form-label">Contact no:</label>
+                    <div class="col-sm-9">
+                      <input type="text" class="form-control" id="contact" placeholder="Enter Contact no" required>
+                    </div>
+                  </div>
+
+                  <div class="row mb-3">
+                    
+                    <label class="col-sm-3 col-form-label" for="accounttype"> Account Type:</label>
+                    <div class="col-sm-9">
+                        <select class="form-select" id="accounttype" required>
+                            <option value="">Select account type</option>
+                            <option value="savings">savings</option>
+                            <option value="current">current</option>
+                        </select>
+                    </div>
+                  
+                  </div>
+
+                  <div class="mb-3 row">
+                    <div class="col-sm-10 offset-sm-3">
+                      <button type="submit" class="btn btn-primary">Add Customer</button>
+                    </div>
+
+                    
+
+                  </div>
+                  
+                  
+                         
+            </form>
+
+
+            <h3 class="mt-5">Customer List</h3>
+            <div class="table-r">
+              <table class="table table-bordered mt-3" id="customerTable">
+                <tbody class="table-light">
+                  <tr>
+                    <td>Name:</td>
+                    <td>Email:</td>
+                    <td>Contact</td>
+                    <td>Account Type:</td>
+                  </tr>
+
+
+                </tbody>
+              </table>
+            </div>
+
+        </div>
+
+        <script src="bootstrap.js"></script>
+
+
+    
+</body>
+</html>

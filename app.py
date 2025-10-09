@@ -262,6 +262,343 @@ root.render(
   </React.StrictMode>
 );
 
-                           
-                                                
+
+
+/* ============ Global Styles ============ */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+}
+
+body {
+  background: #f5f7fb;
+  color: #333;
+  display: flex;
+  min-height: 100vh;
+}
+
+/* =================== Sidebar =================== */
+.sidebar {
+  width: 220px;
+  background: #fff;
+  padding: 20px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  z-index: 200;
+}
+
+.sidebar .logo {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.sidebar .logo img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.sidebar nav a {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-decoration: none;
+  color: #333;
+  padding: 10px 15px;
+  border-radius: 6px;
+  margin-bottom: 10px;
+  transition: 0.3s;
+}
+
+.sidebar nav a.active,
+.sidebar nav a:hover {
+  background: #07b132;
+  color: #fff;
+}
+
+.sidebar nav .badge {
+  background: red;
+  color: #fff;
+  font-size: 12px;
+  padding: 2px 6px;
+  border-radius: 12px;
+}
+
+/* =================== Content Wrapper =================== */
+.maker-dashboard {
+  display: flex;
+  width: 100%;
+}
+
+.dashboard-container {
+  display: flex;
+  width: 100%;
+}
+
+.main-content {
+  margin-left: 220px;
+  width: calc(100% - 220px);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background: #f5f7fb;
+}
+
+/* =================== Navbar =================== */
+.navbar {
+  background: #fff;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 12px 40px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  border-left: 1px solid transparent;
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.notif {
+  position: relative;
+  font-size: 1.3rem;
+  color: #0078d7;
+  cursor: pointer;
+}
+
+.notif-badge {
+  position: absolute;
+  top: -6px;
+  right: -8px;
+  background: red;
+  color: white;
+  font-size: 10px;
+  border-radius: 50%;
+  padding: 2px 5px;
+}
+
+.profile {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.profile img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #ccc;
+}
+
+.user-details h4 {
+  font-size: 14px;
+}
+
+.user-details p {
+  font-size: 12px;
+  color: #777;
+}
+
+/* =================== Banner =================== */
+.banner {
+  background: url("https://sustainability-news.net/wp-content/uploads/2024/08/SC-head-office-2022-scaled-1.jpg") no-repeat center center;
+  background-size: cover;
+  height: 30vh;
+  position: relative;
+}
+
+/* =================== Stats Cards =================== */
+.stats-cards {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: -50px;
+  position: relative;
+  z-index: 10;
+}
+
+.card {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  text-align: center;
+  width: 250px;
+}
+
+.card h3 {
+  font-size: 14px;
+  color: #555;
+}
+
+.count {
+  font-size: 22px;
+  font-weight: 700;
+  margin: 6px 0;
+}
+
+.success {
+  color: #1e7c4c;
+}
+
+.warning {
+  border-left: 4px solid #e97724;
+}
+
+.success-card {
+  border-left: 4px solid #1e7c4c;
+}
+
+.danger {
+  border-left: 4px solid #e34242;
+}
+
+/* =================== Filters =================== */
+.filters {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 20px;
+  background: #fff;
+  justify-content: space-between;
+  border-bottom: 1px solid #e5e7eb;
+  margin-top: 10px;
+  border-radius: 8px;
+}
+
+.filters input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  outline: none;
+}
+
+.filters select {
+  padding: 10px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  outline: none;
+}
+
+.filter-btn {
+  background: #2563eb;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.filter-btn:hover {
+  background: black;
+  color: white;
+}
+
+/* =================== Applications Section =================== */
+.applications {
+  background: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  margin: 40px 60px;
+}
+
+.section-header h2 {
+  font-size: 18px;
+  color: #0078d7;
+}
+
+.section-header p {
+  font-size: 13px;
+  color: #888;
+}
+
+/* =================== Table =================== */
+.app-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.app-table th,
+.app-table td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+  font-size: 14px;
+}
+
+.tag {
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 12px;
+  color: white;
+}
+
+.blue {
+  background: #3b82f6;
+}
+
+.green {
+  background: #16a34a;
+}
+
+.purple {
+  background: #8b5cf6;
+}
+
+.status {
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 12px;
+  color: white;
+}
+
+.pending {
+  background: #facc15;
+  color: #333;
+}
+
+.approved {
+  background: #16a34a;
+}
+
+.rejected {
+  background: #e34242;
+}
+
+/* =================== Pagination =================== */
+.pagination {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.pagination button {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  background: #f0f2f5;
+  transition: 0.3s;
+}
+
+.pagination button:hover {
+  background: #0078d7;
+  color: white;
+}
                       
